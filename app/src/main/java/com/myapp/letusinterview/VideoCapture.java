@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,6 +31,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.okhttp.internal.DiskLruCache;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -141,6 +143,7 @@ public class VideoCapture extends AppCompatActivity {
                 StorageReference videosRef = firebasestorage.getReference().child(uploadString);
                 UploadTask uploadTask = videosRef.child(w.getLastPathSegment() + ".mp4").putFile(w);
 
+//
                 uploadTask.addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
@@ -153,13 +156,40 @@ public class VideoCapture extends AppCompatActivity {
                         new OnCompleteListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task task) {
-                                if (task.isSuccessful()) {
+                                if (task.isSuccessful())
+                                {
 
 
-                                    Uri downloadUrl = videosRef.getDownloadUrl().getResult();
-                                    String ok = downloadUrl.toString();
+//                                    videosRef.getDownloadUrl().addOnSuccessListener {
+//                                    myUrl = it.toString()
+//                                    ok = urlTask.toString();
+                               // }
+                                    Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                                        @Override
+                                        public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                                            if (!task.isSuccessful()) {
+                                                throw task.getException();
+                                            }
+                                            // Continue with the task to get the download URL
+                                            return videosRef.getDownloadUrl();
+                                        }
+                                    }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Uri> task) {
+                                            if (task.isSuccessful()) {
+                                                Uri downloadUri = task.getResult();
+
+
+                                                Toast.makeText(getBaseContext(), "ok" + downloadUri.toString(),
+                                                        Toast.LENGTH_LONG).show();
+                                            }
+                                        }
+                                    });
+                                    ok=urlTask.toString();
+                    // Task<Uri> ww=videosRef.getDownloadUrl();
+//                                String ok=ww.toString();
 //                                Task<Uri> ww=videosRef.getDownloadUrl();
-//                                String flink=ww.toString();
+////                                String flink=ww.toString();
                                   //  Uri downloadUrl1 = (Uri) task.getResult();
                                 //    String e=downloadUrl1.toString();
 //                                    videosRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -167,8 +197,6 @@ public class VideoCapture extends AppCompatActivity {
 //                                        public void onSuccess(Uri uri) {
 //                                            ok=uri.toString();
 
-                                    Toast.makeText(getBaseContext(), "ok" + ok,
-                                            Toast.LENGTH_LONG).show();
 
 //
 //                                Toast.makeText(getBaseContext(),"flink ="+ flink,
