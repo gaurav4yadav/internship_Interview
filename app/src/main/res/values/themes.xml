@@ -1,0 +1,22 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.LetsInterview" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/mycolor4</item>
+        <item name="colorPrimaryVariant">@color/mycolor4</item>
+        <item name="colorOnPrimary">@color/mycolor4</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/mycolor3</item>
+        <item name="colorSecondaryVariant">@color/mycolor3</item>
+        <item name="colorOnSecondary">@color/mycolor3</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CutAndRound" parent="">
+        <item name="cornerFamilyBottomLeft">cut</item>
+        <item name="cornerFamilyTopLeft">cut</item>
+        <item name="cornerSizeBottomLeft">50%</item>
+        <item name="cornerSizeTopLeft">50%</item>
+    </style>
+</resources>

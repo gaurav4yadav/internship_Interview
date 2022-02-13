@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1275" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/drawable/buttonback.xml" value="0.1275" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/drawable/design.xml" value="0.25" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/drawable/emailicon.xml" value="0.201" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1275" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/drawable/ic_login_bk.xml" value="0.21" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/drawable/login_shape_bk.xml" value="0.201" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/drawable/mydesign.xml" value="0.15" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/drawable/pointbutton.xml" value="0.14" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/drawable/question.xml" value="0.17" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/drawable/view.xml" value="0.187" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/layout/activity_adddeleteq.xml" value="0.25" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/layout/activity_addq.xml" value="0.25" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/layout/activity_addupdateprofile.xml" value="0.24140625" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/layout/activity_addviewparticaipants.xml" value="0.3140625" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/layout/activity_addviewq.xml" value="0.2847222222222222" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/layout/activity_campany_dashboard.xml" value="0.49444444444444446" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/layout/activity_candidate_dashboard.xml" value="0.5" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/layout/activity_candidate_login.xml" value="0.33" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/layout/activity_candidate_register.xml" value="0.33" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/layout/activity_company_login.xml" value="0.33" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/layout/activity_company_register.xml" value="0.33" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/layout/activity_forget_password.xml" value="0.33" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/layout/activity_splash_screen.xml" value="0.209375" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/layout/activity_splash_screen1.xml" value="0.33" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/layout/activity_switch_company.xml" value="0.1" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/layout/activity_switchcom.xml" value="0.24545454545454545" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/layout/activity_trail.xml" value="0.2847222222222222" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/layout/activity_updateprofilecompany.xml" value="0.25" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/layout/activity_video_record.xml" value="0.1" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/layout/activity_viewcandidatelist.xml" value="0.2847222222222222" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/layout/activity_viewqcandidate.xml" value="0.25" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/layout/activity_viewqcompany.xml" value="0.3068702290076336" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/layout/activity_vr.xml" value="0.3" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/layout/javawali.xml" value="0.3" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/layout/list_item.xml" value="0.27" />
+        <entry key="..\:/Users/gateway/AndroidStudioProjects/LetsInterview/app/src/main/res/layout/zlist.xml" value="0.33" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.22" />
+      </ProjectState>
+    </option>
+  </component>
+</project>

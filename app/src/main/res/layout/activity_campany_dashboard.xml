@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/design"
+    tools:context=".CampanyDashboard">
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.454"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:id="@+id/cn"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:fontFamily="sans-serif-light"
+                    android:text="asdf afasdasdfdfa"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textFontWeight="24"
+                    android:textSize="20sp"
+                    android:textStyle="bold"></TextView>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:paddingBottom="5dp">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout1"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="HR Name   :  ">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/hrnamel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text=" testing name final test  :"></TextView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout12"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Referal Id   :  ">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/refl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text=" testing id final test  :"></TextView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout123"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Phone         :  ">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/Phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Phone NO  :  ">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout1234"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Email          :  ">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/emaill"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="testing email l final @gmail.com ">
+
+                        </TextView>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <LinearLayout
+        android:layout_width="331dp"
+        android:layout_height="191dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/materialButtone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.761"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/materialCardView2"
+        app:layout_constraintVertical_bias="0.985">
+
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Questions"
+            android:onClick="addquesfun"
+            android:textColor="@color/white"
+            tools:ignore="SpeakableTextPresentCheck"></com.google.android.material.button.MaterialButton>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="delefun"
+            android:padding="8dp"
+            android:text="Delete Questions"
+            android:textColor="@color/white"
+            android:textStyle="bold"></com.google.android.material.button.MaterialButton>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/view"
+            android:padding="8dp"
+            android:onClick="viewquestions"
+            android:text="View Questions"
+            android:textColor="@color/white"
+            android:textStyle="bold"></com.google.android.material.button.MaterialButton>
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/materialButtone"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="313dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:onClick="seelist"
+        android:text="See Interviews"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.872" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/materialButton"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="313dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+ android:onClick="updateact"
+        android:text="Update Company Profile"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.989" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

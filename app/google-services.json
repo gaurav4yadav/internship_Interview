@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "582098075339",
+    "project_id": "letusinterviewapp",
+    "storage_bucket": "letusinterviewapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:582098075339:android:5642d8b67e7219aac6e54e",
+        "android_client_info": {
+          "package_name": "com.myapp.letusinterview"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "582098075339-5n6b7sfk6651ijbioljpu1ek2nd6bimr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdcUIIpTI96yA-TacmclsyjtpD3GcI7LI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "582098075339-5n6b7sfk6651ijbioljpu1ek2nd6bimr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
