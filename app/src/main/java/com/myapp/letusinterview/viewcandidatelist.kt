@@ -1,9 +1,9 @@
 package com.myapp.letusinterview
 
-import androidx.appcompat.app.AppCompatActivity
+
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -11,11 +11,15 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.StorageReference
+
 
 class viewcandidatelist : AppCompatActivity() {
 
 
-
+    private val storagePostPicRef: StorageReference? = null
+    // Create a storage reference from our app
+   // val mountainsRef = StorageReference("f")
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var userArayList: ArrayList<myclass1>

@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardElevation="4dp"
-    app:cardCornerRadius="5dp"
+
+    app:cardCornerRadius="7dp"
     android:layout_margin="5dp"
     android:layout_marginTop="5dp">
 
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="3dp"
         android:layout_marginStart="5dp"
-        android:paddingBottom="5dp"
+        android:padding="3dp"
         android:orientation="vertical">
 
 
@@ -30,9 +30,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="1dp"
-                android:text="Ques. ID: "
-                android:textSize="16dp"
-                android:textStyle="bold" />
+                android:text="Ques. ID  : "
+                android:textSize="16sp"
+            />
 
             <TextView
                 android:id="@+id/uidlay"
@@ -41,7 +41,7 @@
                 android:layout_marginStart="8dp"
                 android:padding="2dp"
                 android:textStyle="bold"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
 
 
 
@@ -50,6 +50,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:layout_gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -58,10 +59,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                android:text="Question "
+                android:text="Question :  "
                 android:padding="1dp"
-                android:textSize="16dp"
-                android:textStyle="bold" />
+                android:textSize="16sp"
+                />
 
             <TextView
                 android:id="@+id/qlay"
@@ -69,8 +70,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:padding="1dp"
-                android:textStyle="bold"
-                android:textSize="14dp" />
+
+                android:textSize="14sp" />
 
 
 

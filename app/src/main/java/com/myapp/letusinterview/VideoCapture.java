@@ -44,7 +44,7 @@ import kotlin.Result;
 public class VideoCapture extends AppCompatActivity {
 
     private FirebaseAuth fbAuth;
-    private FirebaseAuth.AuthStateListener authListener;
+
     String  timestamp;
     Uri uri;
     int  VIDEO_CAPTURE=1;
@@ -141,7 +141,8 @@ public class VideoCapture extends AppCompatActivity {
                 FirebaseStorage firebasestorage = FirebaseStorage.getInstance();
 
                 StorageReference videosRef = firebasestorage.getReference().child(uploadString);
-                UploadTask uploadTask = videosRef.child(w.getLastPathSegment() + ".mp4").putFile(w);
+              //  UploadTask uploadTask = videosRef.child(w.getLastPathSegment() + ".mp4").putFile(w);
+                UploadTask uploadTask = videosRef.putFile(w);
 
 //
                 uploadTask.addOnFailureListener(new OnFailureListener() {
@@ -159,17 +160,15 @@ public class VideoCapture extends AppCompatActivity {
                                 if (task.isSuccessful())
                                 {
 
-
-//                                    videosRef.getDownloadUrl().addOnSuccessListener {
-//                                    myUrl = it.toString()
-//                                    ok = urlTask.toString();
-                               // }
-                                    Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+//ok=task.
+                                    Task<Uri> urlTask = uploadTask.continueWithTask(
+                                            new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                                         @Override
                                         public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
                                             if (!task.isSuccessful()) {
                                                 throw task.getException();
                                             }
+
                                             // Continue with the task to get the download URL
                                             return videosRef.getDownloadUrl();
                                         }
@@ -178,17 +177,72 @@ public class VideoCapture extends AppCompatActivity {
                                         public void onComplete(@NonNull Task<Uri> task) {
                                             if (task.isSuccessful()) {
                                                 Uri downloadUri = task.getResult();
+                                                ok=downloadUri.toString();
+                                                Toast.makeText(getBaseContext(),"good "+downloadUri.toString(),Toast.LENGTH_SHORT).show();
+
+                                                db.collection("candidate").document(uploadString)
+                                                        .get()
+                                                        .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                                                                /// Toast.makeText(getBaseContext(), "fhk", Toast.LENGTH_LONG).show();
+                                                                if (task.isSuccessful()) {
+                                                                    DocumentSnapshot document = task.getResult();
+                                                                    {
+                                                                        String ref = document.getData().get("refernceid").toString();
+                                                                        String names = document.getData().get("namedb").toString();
+                                                                        String mob = document.getData().get("phonedb").toString();
+                                                                        String hr = document.getData().get("coursedb").toString();
+                                                                        String em = document.getData().get("emaildb").toString();
 
 
-                                                Toast.makeText(getBaseContext(), "ok" + downloadUri.toString(),
-                                                        Toast.LENGTH_LONG).show();
+                                                                        Map<String, Object> user = new HashMap<>();
+                                                                        user.put("refernceid", ref);
+                                                                        user.put("namedb", names);
+                                                                        user.put("phonedb", mob);
+                                                                        user.put("coursedb", hr);
+                                                                        user.put("emaildb", em);
+                                                                        user.put("videolink",ok);
+                                                                        db.collection("candidate").document(em)
+                                                                                .set(user)
+                                                                                .addOnSuccessListener(new OnSuccessListener() {
+                                                                                    @Override
+                                                                                    public void onSuccess(Object o) {
+                                                                                        Toast.makeText(getBaseContext(), "Upload complete",
+                                                                                                Toast.LENGTH_LONG).show();
+
+
+                                                                                    }
+
+
+                                                                                })
+                                                                                .addOnFailureListener(new OnFailureListener() {
+                                                                                    @Override
+                                                                                    public void onFailure(@NonNull Exception e) {
+                                                                                        Toast.makeText(getBaseContext(), "Error adding document", Toast.LENGTH_SHORT).show();
+                                                                                    }
+                                                                                });
+                                                                    }
+                                                                } else {
+                                                                    Toast.makeText(getBaseContext(), "Error getting documents.", Toast.LENGTH_SHORT).show();
+                                                                }
+                                                            }
+                                                        });
+                                                progressBar.setVisibility(View.GONE);
+                                            } else {
+                                                // Handle failures
+                                                // ...
+                                                Toast.makeText(getBaseContext(),"failed",Toast.LENGTH_SHORT).show();
                                             }
                                         }
                                     });
-                                    ok=urlTask.toString();
+
+//
+                                 //   ok=videosRef.getDownloadUrl().toString();
                     // Task<Uri> ww=videosRef.getDownloadUrl();
 //                                String ok=ww.toString();
-//                                Task<Uri> ww=videosRef.getDownloadUrl();
+////                                Task<Uri> ww=videosRef.getDownloadUrl();
 ////                                String flink=ww.toString();
                                   //  Uri downloadUrl1 = (Uri) task.getResult();
                                 //    String e=downloadUrl1.toString();
@@ -202,61 +256,10 @@ public class VideoCapture extends AppCompatActivity {
 //                                Toast.makeText(getBaseContext(),"flink ="+ flink,
 //                                        Toast.LENGTH_LONG).show();
 
-                                    db.collection("candidate").document(uploadString)
-                                            .get()
-                                            .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                                @Override
-                                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-
-                                                    Toast.makeText(getBaseContext(), "fhk", Toast.LENGTH_LONG).show();
-                                                    if (task.isSuccessful()) {
-                                                        DocumentSnapshot document = task.getResult();
-                                                        {
-                                                            String ref = document.getData().get("refernceid").toString();
-                                                            String names = document.getData().get("namedb").toString();
-                                                            String mob = document.getData().get("phonedb").toString();
-                                                            String hr = document.getData().get("coursedb").toString();
-                                                            String em = document.getData().get("emaildb").toString();
-
-
-                                                            Map<String, Object> user = new HashMap<>();
-                                                            user.put("refernceid", ref);
-                                                            user.put("namedb", names);
-                                                            user.put("phonedb", mob);
-                                                            user.put("coursedb", hr);
-                                                            user.put("emaildb", em);
-                                                            user.put("videolink",ok);
-                                                            db.collection("candidate").document(em)
-                                                                    .set(user)
-                                                                    .addOnSuccessListener(new OnSuccessListener() {
-                                                                        @Override
-                                                                        public void onSuccess(Object o) {
-    Toast.makeText(getBaseContext(), "Sucessfully saved", Toast.LENGTH_SHORT).show();
-
-                                                                        }
-
-
-                                                                    })
-                                                                    .addOnFailureListener(new OnFailureListener() {
-                                                                        @Override
-                                                                        public void onFailure(@NonNull Exception e) {
-                                                                            Toast.makeText(getBaseContext(), "Error adding document", Toast.LENGTH_SHORT).show();
-                                                                        }
-                                                                    });
-                                                        }
-                                                    } else {
-                                                        Toast.makeText(getBaseContext(), "Error getting documents.", Toast.LENGTH_SHORT).show();
-                                                    }
-                                                }
-                                            });
-
-
 
 //                                });
                                         }
-                                Toast.makeText(getBaseContext(), "Upload complete",
-                                        Toast.LENGTH_LONG).show();
-                                progressBar.setVisibility(View.GONE);
+
 
 
                                                                 }
@@ -265,12 +268,13 @@ public class VideoCapture extends AppCompatActivity {
                      });
 
             }
+        }
             else if (resultCode == RESULT_CANCELED)
                 Toast.makeText(this, "Video recording cancelled.", Toast.LENGTH_LONG).show();
              else
             Toast.makeText(this, "Failed to record video",  Toast.LENGTH_LONG).show();
 
-        }
+
     }
 
 

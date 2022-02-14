@@ -20,6 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LetsInterview">
         <activity
+            android:name=".alreadysubmitted"
+            android:exported="false" />
+        <activity
             android:name=".switchcom"
             android:exported="false" />
         <activity
