@@ -1,22 +1,26 @@
 package com.myapp.letusinterview
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.ListView
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class viewqcandidate : AppCompatActivity() {
+    val dt = Firebase.database
+    var myRef=dt.reference
 
     private lateinit var auth: FirebaseAuth
     private var db = Firebase.firestore
@@ -33,7 +37,22 @@ class viewqcandidate : AppCompatActivity() {
 
         auth = Firebase.auth
         database = FirebaseFirestore.getInstance()
+        var myemail = ""
+        var id=""
+        val user = Firebase.auth.currentUser
+        user?.let {
 
+            myemail = user.email.toString()
+            //  id=user.uid.toString()
+        }
+        //  myRef = dt.getReference(id)
+        db = FirebaseFirestore.getInstance()
+        db.collection("attempt").document(myemail).get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+
+                    function()
+                }}
         recyclerView = findViewById(R.id.recyclerview)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
@@ -44,25 +63,23 @@ class viewqcandidate : AppCompatActivity() {
         myAdapter = MyAdapter(userArayList)
         recyclerView.adapter = myAdapter
 
-        var myemail = ""
-        val user = Firebase.auth.currentUser
-        user?.let {
-
-            myemail = user.email.toString()
-        }
-        db = FirebaseFirestore.getInstance()
 
 
-        var email = ""
-        val useras = auth.currentUser
-        if (useras !== null) {
 
-            email = useras.email.toString()
-        }
+
+
+
+//
+//        var email = ""
+//        val useras = auth.currentUser
+//        if (useras !== null) {
+//
+//            email = useras.email.toString()
+//        }
 
         Toast.makeText(baseContext, "Getting Questions from the server ", Toast.LENGTH_SHORT).show()
         var   ref:String=""
-        database!!.collection("candidate").document(email.toString().trim()).get()
+        database!!.collection("candidate").document(myemail.toString().trim()).get()
             .addOnSuccessListener { document ->
                 if (document != null) {
                     ref = document.getString("refernceid").toString()
@@ -108,5 +125,11 @@ class viewqcandidate : AppCompatActivity() {
 
         var intent = Intent(this,VideoCapture::class.java)
         startActivity(intent)
+    }
+
+    private fun function() {
+        var intent = Intent(this, alreadysubmitted::class.java)
+        startActivity(intent)
+        finishAffinity()
     }
 }

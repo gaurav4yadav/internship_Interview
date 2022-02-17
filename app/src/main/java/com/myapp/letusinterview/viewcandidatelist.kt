@@ -2,7 +2,9 @@ package com.myapp.letusinterview
 
 
 import android.os.Bundle
+import android.widget.MediaController
 import android.widget.Toast
+import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,9 +19,9 @@ import com.google.firebase.storage.StorageReference
 class viewcandidatelist : AppCompatActivity() {
 
 
-    private val storagePostPicRef: StorageReference? = null
-    // Create a storage reference from our app
-   // val mountainsRef = StorageReference("f")
+
+
+
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var userArayList: ArrayList<myclass1>
@@ -73,11 +75,19 @@ class viewcandidatelist : AppCompatActivity() {
                             ok1?.mob = document.getString("phonedb").toString()
                             ok1?.course = document.getString("coursedb").toString()
                             ok1?.email = document.getString("emaildb").toString()
+                            ok1?.url=document.getString("videolink").toString()
 
         //                    var yy=ok1.candname
 //Toast.makeText(baseContext,"{$yy}",Toast.LENGTH_SHORT).show()
-                userArayList.add(ok1!!)
+//                            var vd=findViewById<VideoView>(R.id.video1)
+//                            var mc: MediaController? =MediaController(this)
+//                                mc?.setAnchorView(vd)
+//                           vd.setMediaController(mc)
+//
+//                           vd.requestFocus()
 
+                userArayList.add(ok1!!)
+                            //vd.start()
 
                 myAdapter.notifyDataSetChanged()
 

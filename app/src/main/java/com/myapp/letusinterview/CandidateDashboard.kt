@@ -1,18 +1,24 @@
 package com.myapp.letusinterview
 
+import android.Manifest
 import android.Manifest.permission.*
 import android.content.Intent
 import android.content.pm.PackageManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import android.Manifest
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 
 public var counter: Int =0
 
 class CandidateDashboard : AppCompatActivity() {
+    var database = FirebaseDatabase.getInstance()
+   lateinit var mRef:DatabaseReference
     val permissions = arrayOf(android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE)
 
 
@@ -20,6 +26,15 @@ class CandidateDashboard : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_candidate_dashboard)
 
+        var myemail = ""
+        var id=""
+        val user = Firebase.auth.currentUser
+        user?.let {
+
+            myemail = user.email.toString()
+//            id=user.uid.toString()
+        }
+        mRef = database.getReference(id)
 
 
     }

@@ -23,6 +23,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -43,6 +45,8 @@ import kotlin.Result;
 
 public class VideoCapture extends AppCompatActivity {
 
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+
     private FirebaseAuth fbAuth;
 
     String  timestamp;
@@ -52,16 +56,19 @@ public class VideoCapture extends AppCompatActivity {
     ProgressBar progressBar;
     String uploadString="";
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-
+String id;
     String ref="";
     String names= "";
     String mob= "";
     String hr= "";
     String em  = "";
     String myemail="";
+  //  DatabaseReference myRef;
+
     //StorageReference storageRef = storage.getReference();
 
     public void onCreate(Bundle savedInstanceState) {
+
 
        // Toast.makeText(this,"ok",Toast.LENGTH_SHORT).show();
         super.onCreate(savedInstanceState);
@@ -77,10 +84,12 @@ public class VideoCapture extends AppCompatActivity {
 
                 if (user != null) {
                     uploadString = user.getEmail().toString();
-                    Toast.makeText(getBaseContext(),"emailo "+uploadString,Toast.LENGTH_LONG).show();
-                }
 
-        Toast.makeText(getBaseContext(),"emailo "+uploadString,Toast.LENGTH_LONG).show();
+                   // Toast.makeText(getBaseContext(),"emailo "+uploadString,Toast.LENGTH_LONG).show();
+                }
+  //  myRef = database.getReference(id);
+
+      //  Toast.makeText(getBaseContext(),"emailo "+uploadString,Toast.LENGTH_LONG).show();
 
                     recordButton.setOnClickListener(new View.OnClickListener() {
 
@@ -141,7 +150,7 @@ public class VideoCapture extends AppCompatActivity {
                 FirebaseStorage firebasestorage = FirebaseStorage.getInstance();
 
                 StorageReference videosRef = firebasestorage.getReference().child(uploadString);
-              //  UploadTask uploadTask = videosRef.child(w.getLastPathSegment() + ".mp4").putFile(w);
+              // UploadTask uploadTask = videosRef.child(uploadString + ".mp4").putFile(w);
                 UploadTask uploadTask = videosRef.putFile(w);
 
 //
@@ -152,6 +161,7 @@ public class VideoCapture extends AppCompatActivity {
                                 "Upload failed: " + e.getLocalizedMessage(),
                                 Toast.LENGTH_LONG).show();
 
+
                     }
                 }).addOnCompleteListener(
                         new OnCompleteListener<UploadTask.TaskSnapshot>() {
@@ -159,8 +169,6 @@ public class VideoCapture extends AppCompatActivity {
                             public void onComplete(@NonNull Task task) {
                                 if (task.isSuccessful())
                                 {
-
-//ok=task.
                                     Task<Uri> urlTask = uploadTask.continueWithTask(
                                             new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                                         @Override
@@ -169,7 +177,6 @@ public class VideoCapture extends AppCompatActivity {
                                                 throw task.getException();
                                             }
 
-                                            // Continue with the task to get the download URL
                                             return videosRef.getDownloadUrl();
                                         }
                                     }).addOnCompleteListener(new OnCompleteListener<Uri>() {
@@ -179,7 +186,6 @@ public class VideoCapture extends AppCompatActivity {
                                                 Uri downloadUri = task.getResult();
                                                 ok=downloadUri.toString();
                                                 Toast.makeText(getBaseContext(),"good "+downloadUri.toString(),Toast.LENGTH_SHORT).show();
-
                                                 db.collection("candidate").document(uploadString)
                                                         .get()
                                                         .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -203,27 +209,49 @@ public class VideoCapture extends AppCompatActivity {
                                                                         user.put("phonedb", mob);
                                                                         user.put("coursedb", hr);
                                                                         user.put("emaildb", em);
-                                                                        user.put("videolink",ok);
+                                                                        user.put("videolink", ok);
                                                                         db.collection("candidate").document(em)
                                                                                 .set(user)
                                                                                 .addOnSuccessListener(new OnSuccessListener() {
                                                                                     @Override
                                                                                     public void onSuccess(Object o) {
-                                                                                        Toast.makeText(getBaseContext(), "Upload complete",
-                                                                                                Toast.LENGTH_LONG).show();
+                                                                                        Map<String, Object> att = new HashMap<>();
+//                                                                                        att.put("k", "1");
+
+                                                                                        db.collection("attempt").document(em)
+                                                                                                .set(att)
+                                                                                                .addOnCompleteListener(new OnCompleteListener() {
+                                                                                                                           @Override
+                                                                                                                           public void onComplete(@NonNull Task task) {
+                                                                                                                               if (task.isSuccessful()) {
+                                                                                                                                   Toast.makeText(getBaseContext(), "Upload complete",
+                                                                                                                                           Toast.LENGTH_LONG).show();
+
+
+                                                                                                                               }
+                                                                                                                           }
+                                                                                                                       }
+                                                                                                );
+
 
 
                                                                                     }
 
-
-                                                                                })
-                                                                                .addOnFailureListener(new OnFailureListener() {
-                                                                                    @Override
-                                                                                    public void onFailure(@NonNull Exception e) {
-                                                                                        Toast.makeText(getBaseContext(), "Error adding document", Toast.LENGTH_SHORT).show();
-                                                                                    }
                                                                                 });
                                                                     }
+//                                                                                });
+
+
+                                                                }
+//                                                                                .addOnFailureListener(new OnFailureListener() {
+//                                                                                    @Override
+//                                                                                    public void onFailure(@NonNull Exception e) {
+//                                                                                        Toast.makeText(getBaseContext(), "Error adding document", Toast.LENGTH_SHORT).show();
+//                                                                                    }
+//                                                                                });
+                                                            }
+                                                        });
+
                                                                 } else {
                                                                     Toast.makeText(getBaseContext(), "Error getting documents.", Toast.LENGTH_SHORT).show();
                                                                 }
@@ -233,7 +261,8 @@ public class VideoCapture extends AppCompatActivity {
                                             } else {
                                                 // Handle failures
                                                 // ...
-                                                Toast.makeText(getBaseContext(),"failed",Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(getBaseContext(),"failed ere",Toast.LENGTH_SHORT).show();
+                                                progressBar.setVisibility(View.GONE);
                                             }
                                         }
                                     });
@@ -265,10 +294,10 @@ public class VideoCapture extends AppCompatActivity {
                                                                 }
 
 
-                     });
+//                     });
 
-            }
-        }
+//            }
+//        }
             else if (resultCode == RESULT_CANCELED)
                 Toast.makeText(this, "Video recording cancelled.", Toast.LENGTH_LONG).show();
              else

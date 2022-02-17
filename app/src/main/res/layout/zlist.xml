@@ -3,23 +3,49 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardElevation="9dp"
+    app:cardElevation="4dp"
     app:cardCornerRadius="9dp"
-    android:layout_margin="16dp"
+    android:layout_margin="4dp"
     android:layout_marginTop="20dp">
 
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="16dp"
-        android:layout_marginStart="16dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+<WebView
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:id="@+id/web"
+    android:layout_gravity="center"
+    ></WebView>
 
+
+
+
+<!--        <VideoView-->
+<!--            android:id="@+id/video1"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="200dp"-->
+<!--            android:paddingBottom="5dp"-->
+
+<!--           >-->
+
+<!--        </VideoView>-->
+<!--        <com.google.android.exoplayer2.ui.PlayerView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="220dp"-->
+<!--            android:id="@+id/video1"-->
+<!--            android:background="@color/black"-->
+<!--            app:resize_mode="fill"-->
+<!--            android:layout_gravity="center"/>-->
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="5dp"
             android:layout_gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -56,7 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="2dp"
-                android:text="Mob Number : "
+                android:text="Mob No. : "
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -84,7 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="2dp"
-                android:text="E-mail : "
+                android:text="E-mail   : "
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -127,9 +153,27 @@
 
 
 
+  <com.google.android.material.button.MaterialButton
+      style="@style/Widget.MaterialComponents.Button.TextButton"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/adwonlaod"
+      android:onClick="download"
+      android:text="Download Interview"
+      android:textColor="@color/mycolor3">
+  </com.google.android.material.button.MaterialButton>
 
 
 
 
     </LinearLayout>
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.cardview.widget.CardView>
