@@ -33,24 +33,6 @@ class switchcom : AppCompatActivity() {
         db = FirebaseFirestore.getInstance()
         database = FirebaseFirestore.getInstance()
 
-        val user = Firebase.auth.currentUser
-        user?.let {
-
-            myemail = user.email.toString()
-        }
-
-        database!!.collection("candidate").document(myemail.toString().trim()).get()
-            .addOnSuccessListener { document ->
-                if (document != null) {
-                    ref = document.getString("refernceid").toString()
-                    mob = document.getString("phonedb").toString()
-                    names = document.getString("namedb").toString()
-                    hr = document.getString("coursedb").toString()
-                    em = document.getString("emaildb").toString()
-
-                }
-            }
-
 
     }
 
@@ -77,40 +59,63 @@ class switchcom : AppCompatActivity() {
 
 
                     } else {
-                        val data = hashMapOf(
-                            "refernceid" to ref,
-                            "namedb" to names,
-                            "phonedb" to mob,
-                            "coursedb" to hr,
-                            "emaildb" to em
-                        )
 
-                        db.collection("candidate").document(myemail.toString())
-                            .set(data)
-                            .addOnSuccessListener {
-                                //   Log.d(TAG, "DocumentSnapshot written with ID: ${documentReference.id}")
-                                Toast.makeText(
-                                    baseContext, "Candidate Switched Successfully",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                progressBar.visibility = View.GONE
+                        val user = Firebase.auth.currentUser
+                        user?.let {
+
+                            myemail = user.email.toString()
+                        }
+
+                        database!!.collection("candidate").document(myemail.toString().trim()).get()
+                            .addOnSuccessListener { document ->
+                                if (document != null) {
+                                    ref = document.getString("refernceid").toString()
+                                    mob = document.getString("phonedb").toString()
+                                    names = document.getString("namedb").toString()
+                                    hr = document.getString("coursedb").toString()
+                                    em = document.getString("emaildb").toString()
+
+                                    val data = hashMapOf(
+                                        "refernceid" to newref,
+                                        "namedb" to names,
+                                        "phonedb" to mob,
+                                        "coursedb" to hr,
+                                        "emaildb" to em
+                                    )
+
+                                    db.collection("candidate").document(myemail.toString())
+                                        .set(data)
+                                        .addOnSuccessListener {
+                                            //   Log.d(TAG, "DocumentSnapshot written with ID: ${documentReference.id}")
+                                            Toast.makeText(
+                                                baseContext, "Candidate Switched Successfully",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                            progressBar.visibility = View.GONE
 
 
-                            }
-                            .addOnFailureListener {
-                                //Log.w(TAG, "Error adding document", e)
-                                Toast.makeText(
-                                    baseContext, "scomething went wrong ",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                progressBar.visibility = View.GONE
+                                        }
+                                        .addOnFailureListener {
+                                            //Log.w(TAG, "Error adding document", e)
+                                            Toast.makeText(
+                                                baseContext, "scomething went wrong ",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                            progressBar.visibility = View.GONE
 
+                                        }
+
+                                }
                             }
 
                     }
-                }
 
-        }
+                                }
+                            }
+
+
+
+
     }
 
 }

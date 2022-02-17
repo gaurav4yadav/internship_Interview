@@ -43,6 +43,7 @@ class viewcandidatelist : AppCompatActivity() {
 
         userArayList = arrayListOf()
 
+
         myAdapter = myadapter1(userArayList)
         recyclerView.adapter = myAdapter
 
@@ -76,7 +77,10 @@ class viewcandidatelist : AppCompatActivity() {
                             ok1?.course = document.getString("coursedb").toString()
                             ok1?.email = document.getString("emaildb").toString()
                             ok1?.url=document.getString("videolink").toString()
+  Toast.makeText(baseContext," dtata{${ok1?.url}}",Toast.LENGTH_SHORT).show()
 
+                            if(ok1.url===null)
+              Toast.makeText(baseContext,"ok good",Toast.LENGTH_SHORT).show()
         //                    var yy=ok1.candname
 //Toast.makeText(baseContext,"{$yy}",Toast.LENGTH_SHORT).show()
 //                            var vd=findViewById<VideoView>(R.id.video1)

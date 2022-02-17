@@ -144,7 +144,7 @@ String id;
             if (resultCode == RESULT_OK) {
                 Toast.makeText(getBaseContext(),"Please wait ,It may take 15 minutes or more ,uploading is in progress",Toast.LENGTH_LONG).show();
 
-                progressBar.setVisibility(View.VISIBLE);
+         progressBar.setVisibility(View.VISIBLE);
 
                 Uri w = data.getData();
                 FirebaseStorage firebasestorage = FirebaseStorage.getInstance();
@@ -185,7 +185,7 @@ String id;
                                             if (task.isSuccessful()) {
                                                 Uri downloadUri = task.getResult();
                                                 ok=downloadUri.toString();
-                                                Toast.makeText(getBaseContext(),"good "+downloadUri.toString(),Toast.LENGTH_SHORT).show();
+                                              //  Toast.makeText(getBaseContext(),"good "+downloadUri.toString(),Toast.LENGTH_SHORT).show();
                                                 db.collection("candidate").document(uploadString)
                                                         .get()
                                                         .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -218,14 +218,16 @@ String id;
                                                                                         Map<String, Object> att = new HashMap<>();
 //                                                                                        att.put("k", "1");
 
-                                                                                        db.collection("attempt").document(em)
+                                                                                        db.collection(ref).document(em)
                                                                                                 .set(att)
                                                                                                 .addOnCompleteListener(new OnCompleteListener() {
                                                                                                                            @Override
                                                                                                                            public void onComplete(@NonNull Task task) {
                                                                                                                                if (task.isSuccessful()) {
+
                                                                                                                                    Toast.makeText(getBaseContext(), "Upload complete",
                                                                                                                                            Toast.LENGTH_LONG).show();
+                                                                                                                                   progressBar.setVisibility(View.GONE);
 
 
                                                                                                                                }
@@ -257,7 +259,7 @@ String id;
                                                                 }
                                                             }
                                                         });
-                                                progressBar.setVisibility(View.GONE);
+
                                             } else {
                                                 // Handle failures
                                                 // ...

@@ -30,11 +30,13 @@ class viewqcandidate : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var userArayList: ArrayList<myclass>
     private lateinit var myAdapter: MyAdapter
-
+ var reffer:String=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_viewqcandidate)
+        progressBar=findViewById<ProgressBar>(R.id.progressBar1)
 
+        progressBar.visibility = View.VISIBLE
         auth = Firebase.auth
         database = FirebaseFirestore.getInstance()
         var myemail = ""
@@ -47,12 +49,28 @@ class viewqcandidate : AppCompatActivity() {
         }
         //  myRef = dt.getReference(id)
         db = FirebaseFirestore.getInstance()
-        db.collection("attempt").document(myemail).get()
-            .addOnSuccessListener { document ->
-                if (document != null) {
 
-                    function()
-                }}
+
+
+       db.collection("candidate").document(myemail.toString().trim()).get()
+            .addOnSuccessListener { document->
+                if(document!=null)
+                {
+                    reffer=document.getString("refernceid").toString()
+
+                    db.collection(reffer).document(myemail).get()
+                        .addOnSuccessListener { document ->
+                            if (document.exists()) {
+
+                                function()
+                            }}
+
+                }
+            }
+
+
+
+
         recyclerView = findViewById(R.id.recyclerview)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
@@ -77,12 +95,13 @@ class viewqcandidate : AppCompatActivity() {
 //            email = useras.email.toString()
 //        }
 
-        Toast.makeText(baseContext, "Getting Questions from the server ", Toast.LENGTH_SHORT).show()
+  //      Toast.makeText(baseContext, "Getting Questions from the server ", Toast.LENGTH_SHORT).show()
         var   ref:String=""
         database!!.collection("candidate").document(myemail.toString().trim()).get()
             .addOnSuccessListener { document ->
                 if (document != null) {
                     ref = document.getString("refernceid").toString()
+                    progressBar.visibility = View.GONE
 
         val cemail:String=""
         database!!.collection("company").whereEqualTo( "refernceid" ,ref).get()
@@ -97,7 +116,7 @@ class viewqcandidate : AppCompatActivity() {
                                 var ok1: myclass? = document.toObject(myclass::class.java)
                                 ok1!!.q = document.getString("ques").toString()
                                 ok1!!.u=document.getString("uid").toString()
-//Toast.makeText(baseContext," dtata{${ok1?.q}}",Toast.LENGTH_SHORT).show()
+
 
                                 userArayList.add(ok1!!)
                                 myAdapter.notifyDataSetChanged()

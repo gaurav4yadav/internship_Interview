@@ -11,16 +11,15 @@
         android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-      android:layout_marginBottom="20dp"
+        android:layout_marginBottom="20dp"
         android:text="Let's Begin "
-android:textColor="@color/white"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.439"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.654" />
-
+        app:layout_constraintVertical_bias="0.978" />
 
     <ImageView
         android:id="@+id/imageView9"
@@ -40,8 +39,9 @@ android:textColor="@color/white"
         android:layout_width="343dp"
         android:layout_height="88dp"
         android:layout_margin="7dp"
+        android:layout_marginStart="10dp"
         android:padding="5dp"
-        android:text="Note: Once your interview is started please do not go back.After interview please wait for some time till the message of video uploaded so that video can be uploaded "
+        android:text="Note: Once your interview is started please do not go back. After interview please wait for some time till the message of  upload complete ,so that video can be uploaded "
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -53,6 +53,8 @@ android:textColor="@color/white"
         android:id="@+id/cardView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:paddingTop="10dp"
         app:layout_constraintBottom_toTopOf="@+id/textView15"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,32 +64,42 @@ android:textColor="@color/white"
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
             android:layout_marginStart="5dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="8dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Instructions for Exam"
+                android:padding="4dp"
+                android:text="Important Instructions for Exam"
                 android:textAlignment="center"
                 android:textColor="@color/black"></TextView>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="once you started you cannot retake the interview again"></TextView>
+                android:paddingTop="3dp"
+                android:text="Once you started you cannot retake the interview again"></TextView>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Questions will be displayed on next screen ,you have to answer any 3 of them"></TextView>
+                android:paddingTop="3dp"
+                android:text="Complete your answers in  alloted  time i.e. 90 seconds."></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="3dp"
+                android:text="You have to answer any 3 of the questions"></TextView>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
 
     <ProgressBar
+        android:elevation="10dp"
         android:id="@+id/progressBar1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
